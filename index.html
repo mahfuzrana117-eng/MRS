@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>টুম টুম - পাগলা জোকার</title>
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        .content {
+            text-align: center;
+            z-index: 10;
+        }
+
+        /* জোকার ইমোজি এনিমেশন */
+        #joker-face {
+            font-size: 10rem;
+            display: none;
+            filter: drop-shadow(0 0 20px red);
+        }
+
+        .crazy-text {
+            font-size: 5rem;
+            color: yellow;
+            text-shadow: 5px 5px red;
+            display: none;
+        }
+
+        /* ভূমিকম্প এনিমেশন */
+        .shake {
+            animation: earthquake 0.1s infinite;
+        }
+
+        @keyframes earthquake {
+            0% { transform: translate(5px, 5px) rotate(0deg); }
+            25% { transform: translate(-5px, -10px) rotate(-5deg); }
+            50% { transform: translate(-10px, 5px) rotate(5deg); }
+            75% { transform: translate(5px, -5px) rotate(-2deg); }
+            100% { transform: translate(-5px, 5px) rotate(0deg); }
+        }
+
+        /* স্ট্রোব লাইট */
+        .strobe {
+            animation: strobeEffect 0.1s infinite;
+        }
+
+        @keyframes strobeEffect {
+            0% { background: #ff0000; }
+            25% { background: #00ff00; }
+            50% { background: #0000ff; }
+            75% { background: #ffff00; }
+            100% { background: #ff00ff; }
+        }
+
+        .start-btn {
+            padding: 20px 40px;
+            font-size: 2rem;
+            background: red;
+            color: white;
+            border: 5px solid white;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content" id="mainContainer">
+        <div id="joker-face">🤡</div>
+        <div id="text" class="crazy-text">টুম টুম <br> টেডাউউউ!!!</div>
+        <button id="btn" class="start-btn" onclick="goCrazy()">চাপ দাও! 😂</button>
+    </div>
+
+    <audio id="audioFile">
+        <source src="TUM TUM TERAU SOUND EFFECT(360P).mp4" type="video/mp4">
+    </audio>
+
+    <script>
+        function goCrazy() {
+            const audio = document.getElementById('audioFile');
+            const face = document.getElementById('joker-face');
+            const text = document.getElementById('text');
+            const btn = document.getElementById('btn');
+            const container = document.getElementById('mainContainer');
+
+            audio.play();
+            btn.style.display = 'none';
+            face.style.display = 'block';
+            text.style.display = 'block';
+
+            // পাগলামি শুরু
+            document.body.classList.add('strobe');
+            container.classList.add('shake');
+
+            // র‍্যান্ডম সাইজ চেঞ্জ
+            setInterval(() => {
+                face.style.fontSize = (Math.random() * 5 + 8) + 'rem';
+            }, 50);
+        }
+    </script>
+</body>
+</html>
